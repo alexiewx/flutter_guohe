@@ -65,54 +65,87 @@ class LeftMenu extends Drawer {
               leading: new Icon(Icons.accessibility),
               onTap: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).pushNamed('/a');
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text("关于我们"),
+                    ));
               }),
-          //分割线控件
           new ListTile(
-            //退出按钮
-            title: new Text('分享此应用'),
-            leading: new Icon(Icons.share),
-            onTap: () => Navigator.of(context).pop(), //点击后收起侧边栏
-          ),
-          //分割线控件
+              //退出按钮
+              title: new Text('分享此应用'),
+              leading: new Icon(Icons.share),
+              onTap: () {
+                Navigator.of(context).pop();
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text("分享此应用"),
+                    ));
+              } //点击后收起侧边栏
+              ),
           new ListTile(
-            //退出按钮
-            title: new Text('给我们反馈'),
-            leading: new Icon(Icons.feedback),
-            onTap: () => Navigator.of(context).pop(), //点击后收起侧边栏
-          ),
-          //分割线控件
+              //退出按钮
+              title: new Text('给我们反馈'),
+              leading: new Icon(Icons.feedback),
+              onTap: () {
+                Navigator.of(context).pop();
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text("给我们反馈"),
+                    ));
+              } //点击后收起侧边栏
+              ),
           new ListTile(
-            //退出按钮
-            title: new Text('联系开发者'),
-            leading: new Icon(Icons.flight),
-            onTap: () => Navigator.of(context).pop(), //点击后收起侧边栏
-          ),
-          //分割线控件
+              //退出按钮
+              title: new Text('联系开发者'),
+              leading: new Icon(Icons.flight),
+              onTap: () {
+                Navigator.of(context).pop();
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text("联系开发者"),
+                    ));
+              } //点击后收起侧边栏
+              ),
           new ListTile(
-            //退出按钮
-            title: new Text('加入交流群'),
-            leading: new Icon(Icons.group_add),
-            onTap: () => Navigator.of(context).pop(), //点击后收起侧边栏
-          ),
+              //退出按钮
+              title: new Text('加入交流群'),
+              leading: new Icon(Icons.group_add),
+              onTap: () {
+                Navigator.of(context).pop();
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text("加入交流群"),
+                    ));
+              } //点击后收起侧边栏
+              ),
           new ListTile(
-            //退出按钮
-            title: new Text('切换账号'),
-            leading: new Icon(Icons.sync),
-            onTap: () => Navigator.of(context).pop(), //点击后收起侧边栏
-          ),
+              //退出按钮
+              title: new Text('切换账号'),
+              leading: new Icon(Icons.sync),
+              onTap: () {
+                Navigator.of(context).pop();
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text("切换账号"),
+                    ));
+              } //点击后收起侧边栏
+              ),
           new ListTile(
-            //退出按钮
-            title: new Text('检测升级'),
-            leading: new Icon(Icons.refresh),
-            onTap: () => Navigator.of(context).pop(), //点击后收起侧边栏
-          ),
+              //退出按钮
+              title: new Text('检测升级'),
+              leading: new Icon(Icons.refresh),
+              onTap: () {
+                Navigator.of(context).pop();
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text("检测升级"),
+                    ));
+              } //点击后收起侧边栏
+              ),
           new ListTile(
-            //退出按钮
-            title: new Text('更新说明'),
-            leading: new Icon(Icons.info),
-            onTap: () => Navigator.of(context).pop(), //点击后收起侧边栏
-          ),
+              //退出按钮
+              title: new Text('更新说明'),
+              leading: new Icon(Icons.info),
+              onTap: () {
+                Navigator.of(context).pop();
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                      content: new Text("更新说明"),
+                    ));
+              } //点击后收起侧边栏
+              ),
         ],
       ),
     );
