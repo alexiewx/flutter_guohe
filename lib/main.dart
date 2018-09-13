@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app.dart';
+import 'package:flutter_guohe/pages/app.dart';
 
 void main() {
   runApp(new Guohe());
