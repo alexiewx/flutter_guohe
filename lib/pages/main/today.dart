@@ -29,14 +29,15 @@ class TodayState extends State<Today> {
           backgroundColor: Color.fromARGB(255, 119, 136, 213), //设置appbar背景颜色
           centerTitle: true, //设置标题是否局中
         ),
-        body: new Column(
+        body: new ListView(
           children: <Widget>[
             new Header(),
             new BigDivider(),
             new TodayKb(),
             new BigDivider(),
             new Message(),
-            new BigDivider()
+            new BigDivider(),
+            new One()
           ],
         ),
       ),
@@ -264,6 +265,76 @@ class Message extends StatelessWidget {
           new Container(
             margin: new EdgeInsets.all(10.0),
             child: new Text("这里是消息"),
+          ),
+          new Divider(
+            color: Color(0xFF888888),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+//日知录
+class One extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Padding(
+      padding: new EdgeInsets.all(18.0),
+      child: new Column(
+        children: <Widget>[
+          new Container(
+            child: new Row(
+              children: <Widget>[
+                new Icon(
+                  Icons.email,
+                  color: Colors.black26,
+                  size: 17.0,
+                ),
+                new Container(
+                  margin: new EdgeInsets.only(left: 5.0),
+                  child: new Text(
+                    '日知录',
+                    style: new TextStyle(color: Color(0xFF888888)),
+                  ),
+                )
+              ],
+            ),
+          ),
+          new Divider(
+            color: Color(0xFF888888),
+          ),
+          new Container(
+            margin: new EdgeInsets.all(10.0),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Text(
+                  '2018/09/14',
+                  style: new TextStyle(color: Color(0xFF888888)),
+                ),
+                new Margin(indent: 6.0),
+                new Image(
+                    image: new NetworkImage(
+                        'http://image.wufazhuce.com/Fn5E1UnrcvN0jwFRiOtDZ2WnQa4N')),
+                new Margin(indent: 6.0),
+                new Text(
+                  'Fahmi Ramadhan | 摄影',
+                  style: new TextStyle(color: Color(0xFF888888)),
+                ),
+                new Margin(indent: 6.0),
+                new Text(
+                  '所有的爱情，都是两个心灵相通的人胜利，无法相互了解的人失败，没有所谓对错。',
+                  textAlign: TextAlign.center,
+                  style: new TextStyle(color: Color(0xFF888888)),
+                ),
+                new Margin(indent: 6.0),
+                new Text(
+                  '《东京爱情故事》',
+                  style: new TextStyle(color: Color(0xFF888888)),
+                )
+              ],
+            ),
           ),
           new Divider(
             color: Color(0xFF888888),
