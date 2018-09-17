@@ -9,10 +9,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   event_bus: ^1.0.1
+  dio: ^1.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 
 # For information on the generic Dart part of this file, see the
@@ -37,6 +39,11 @@ flutter:
     - assets/imgs/ic_menu_score.png
     - assets/imgs/ic_menu_system.png
     - assets/imgs/ic_menu_tel.png
+    - assets/imgs/cards/card1.webp
+    - assets/imgs/cards/card2.webp
+    - assets/imgs/cards/card3.webp
+    - assets/imgs/cards/card4.webp
+    - assets/imgs/cards/card5.webp
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

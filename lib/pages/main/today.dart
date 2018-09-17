@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_guohe/common/eventBus.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_guohe/views/customview.dart';
+import 'package:flutter_guohe/utils/constant.dart';
 
 class Today extends StatefulWidget {
   @override
@@ -31,13 +33,13 @@ class TodayState extends State<Today> {
         ),
         body: new ListView(
           children: <Widget>[
-            new Header(),
+            new Header(), //头部
             new BigDivider(),
-            new TodayKb(),
+            new TodayKb(), //今日课表
             new BigDivider(),
-            new Message(),
+            new Message(), //消息
             new BigDivider(),
-            new One()
+            new One() //日知录
           ],
         ),
       ),
@@ -186,9 +188,19 @@ class Header extends StatelessWidget {
 }
 
 //今日课表
-class TodayKb extends StatelessWidget {
+class TodayKb extends StatefulWidget {
+  @override
+  TodayKbState createState() => new TodayKbState();
+}
+
+class TodayKbState extends State<TodayKb> {
   @override
   Widget build(BuildContext context) {
+    //跳转至课表
+    _toKb() {
+      print('跳转至课表');
+    }
+
     return new Padding(
       padding: new EdgeInsets.all(18.0),
       child: new Column(
@@ -218,14 +230,17 @@ class TodayKb extends StatelessWidget {
             margin: new EdgeInsets.only(top: 30.0, bottom: 2.0),
             child: new Text("今天居然没有课~" + "\uD83D\uDE01"),
           ),
-          new Container(
-            margin: new EdgeInsets.only(top: 30.0, bottom: 2.0),
-            child: new Text('点我查看完整课表',
-                style: new TextStyle(
-                    color: Color(
-                      0xFF888888,
-                    ),
-                    fontSize: 12.0)),
+          new GestureDetector(
+            child: new Container(
+              margin: new EdgeInsets.only(top: 30.0, bottom: 2.0),
+              child: new Text('点我查看完整课表',
+                  style: new TextStyle(
+                      color: Color(
+                        0xFF888888,
+                      ),
+                      fontSize: 12.0)),
+            ),
+            onTap: _toKb,
           ),
         ],
       ),
@@ -234,7 +249,37 @@ class TodayKb extends StatelessWidget {
 }
 
 //消息
-class Message extends StatelessWidget {
+class Message extends StatefulWidget {
+  @override
+  MessageState createState() => new MessageState();
+}
+
+class MessageState extends State<Message> {
+  String message = "这里是消息模块";
+
+  @override
+  void initState() {
+    super.initState();
+
+    getMessage();
+  }
+
+  //获取消息
+  void getMessage() {
+    Dio().get('http://guohe3.com/getToast').then((res) {
+      if (res.statusCode == 200) {
+        int code = res.data['code'];
+        if (code == 200) {
+          String info = res.data['info'][0];
+          print(info);
+          setState(() {
+            message = info;
+          });
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Padding(
@@ -264,7 +309,7 @@ class Message extends StatelessWidget {
           ),
           new Container(
             margin: new EdgeInsets.all(10.0),
-            child: new Text("这里是消息"),
+            child: new Text(message),
           ),
           new Divider(
             color: Color(0xFF888888),
@@ -276,7 +321,45 @@ class Message extends StatelessWidget {
 }
 
 //日知录
-class One extends StatelessWidget {
+class One extends StatefulWidget {
+  @override
+  OneState createState() => new OneState();
+}
+
+class OneState extends State<One> {
+  String date = "2018/09/14";
+  String imgUrl = 'http://image.wufazhuce.com/Fn5E1UnrcvN0jwFRiOtDZ2WnQa4N';
+  String imgAuthor = "Fahmi Ramadhan";
+  String imgKind = "摄影";
+  String url = "http://m.wufazhuce.com/one/2202";
+  String word = "恋爱不是用谈的，是坠入的。";
+  String wordFrom = "《寂寞东京铁塔》";
+
+  //获取日知录的内容
+  void getOneContent() {
+    FormData formData = new FormData.from(
+        {"TransCode": "030111", "OpenId": "123456789", "Body": "123456789"});
+    Dio().post(Constant.ONE, data: formData).then((res) {
+      setState(() {
+        date = res.data['Body']['date'].toString().split(" ")[0].replaceAll("-", "/");
+        imgUrl = res.data['Body']['img_url'];
+        imgAuthor = res.data['Body']['img_author'];
+        imgKind = res.data['Body']['img_kind'];
+        url = res.data['Body']['url'];
+        word = res.data['Body']['word'];
+        wordFrom = res.data['Body']['word_from'];
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    getOneContent();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Padding(
@@ -310,27 +393,25 @@ class One extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 new Text(
-                  '2018/09/14',
+                  date,
                   style: new TextStyle(color: Color(0xFF888888)),
                 ),
                 new Margin(indent: 6.0),
-                new Image(
-                    image: new NetworkImage(
-                        'http://image.wufazhuce.com/Fn5E1UnrcvN0jwFRiOtDZ2WnQa4N')),
+                new Image(image: new NetworkImage(imgUrl)),
                 new Margin(indent: 6.0),
                 new Text(
-                  'Fahmi Ramadhan | 摄影',
+                  imgAuthor + " | " + imgKind,
                   style: new TextStyle(color: Color(0xFF888888)),
                 ),
                 new Margin(indent: 6.0),
                 new Text(
-                  '所有的爱情，都是两个心灵相通的人胜利，无法相互了解的人失败，没有所谓对错。',
+                  word,
                   textAlign: TextAlign.center,
                   style: new TextStyle(color: Color(0xFF888888)),
                 ),
                 new Margin(indent: 6.0),
                 new Text(
-                  '《东京爱情故事》',
+                  wordFrom,
                   style: new TextStyle(color: Color(0xFF888888)),
                 )
               ],
