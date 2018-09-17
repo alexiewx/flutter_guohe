@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_guohe/views/banner.dart';
 import 'package:flutter_guohe/model/Ad.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_guohe/utils/constant.dart';
+import 'dart:convert';
+import 'package:flutter_guohe/model/AdRes.dart';
 
 class Playground extends StatefulWidget {
   @override
@@ -110,7 +114,8 @@ class Cards extends StatelessWidget {
           ),
         ),
         new Card(
-          margin: new EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+          margin: new EdgeInsets.only(
+              left: 15.0, right: 15.0, top: 15.0, bottom: 15.0),
           elevation: 10.0,
           color: Color.fromARGB(0, 255, 255, 255),
           child: new Container(
@@ -144,16 +149,20 @@ class BannerState extends State<BannerHeader> {
 
   //初始化轮播图列表
   void initAd() {
-    adList.add(new Ad(
-        "虚位以待",
-        "广告位",
-        "http://p7gzvzwe4.bkt.clouddn.com/TIM%E5%9B%BE%E7%89%8720180517233021.png",
-        "http://119.23.212.45/guohe/ad/ad.html"));
-    adList.add(new Ad(
-        "百度APP新产品友话已正式上线",
-        "百度友话",
-        "http://p7gzvzwe4.bkt.clouddn.com/2AD0F7FD93606B1D688A2F09EB38B4E1.jpg",
-        "https://youhua.baidu.com/circle?groupId=10289"));
+    Dio().get(Constant.SLIDE).then((res) {
+      int code = res.data['code'];
+      if (code == 200) {
+        var list = res.data['info'] as List;
+        List<Ads> adsList = list.map((i) => Ads.fromJson(i)).toList();
+        List<Ad> ads = new List();
+        for (Ads ad in adsList) {
+          ads.add(new Ad(ad.des, ad.title, ad.img, ad.url));
+        }
+        setState(() {
+          adList = ads;
+        });
+      }
+    });
   }
 
   @override
@@ -172,8 +181,8 @@ class BannerState extends State<BannerHeader> {
           color: Colors.black26,
           child: new Stack(children: <Widget>[
             new Image(
-              width:420.0,
-              image:NetworkImage(ad.img),
+              width: 420.0,
+              image: NetworkImage(ad.img),
               fit: BoxFit.cover,
             ),
             new Positioned(
@@ -181,16 +190,43 @@ class BannerState extends State<BannerHeader> {
                 right: 0.0,
                 top: 215.0,
                 child: new Container(
-                  height: 35.0,
-                  color: Colors.black12,
-                  child: new Text(
-                    ad.title,
-                    style: new TextStyle(
-                        fontSize: 14.0,
-                        fontFamily: 'serif',
-                        color: Color.fromARGB(255, 248, 248, 255)),
-                  ),
-                )),
+                    height: 35.0,
+                    color: Colors.black26,
+                    child: new Padding(
+                      padding: new EdgeInsets.all(5.0),
+                      child: new Row(
+                        children: <Widget>[
+                          new Expanded(
+                            child: new Align(
+                              alignment: Alignment.centerLeft,
+                              child: new Text(
+                                ad.des,
+                                style: new TextStyle(
+                                    fontSize: 14.0,
+                                    fontFamily: 'serif',
+                                    color: Color.fromARGB(255, 248, 248, 255)),
+                              ),
+                            ),
+                            flex: 1,
+                          ),
+                          new Expanded(
+                            child: new Align(
+                              alignment: Alignment.centerRight,
+                              child: new Text(
+                                (index + 1).toString() +
+                                    "/" +
+                                    adList.length.toString(),
+                                style: new TextStyle(
+                                    fontSize: 14.0,
+                                    fontFamily: 'serif',
+                                    color: Color.fromARGB(255, 248, 248, 255)),
+                              ),
+                            ),
+                            flex: 1,
+                          )
+                        ],
+                      ),
+                    ))),
           ]),
         );
       },
