@@ -3,8 +3,8 @@ import 'package:flutter_guohe/views/banner.dart';
 import 'package:flutter_guohe/model/Ad.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_guohe/utils/constant.dart';
-import 'dart:convert';
 import 'package:flutter_guohe/model/AdRes.dart';
+import 'package:flutter_guohe/views/browser.dart';
 
 class Playground extends StatefulWidget {
   @override
@@ -16,13 +16,13 @@ class PlaygroundState extends State<Playground> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text("操场"),
-          backgroundColor: Color.fromARGB(255, 119, 136, 213), //设置appbar背景颜色
-          centerTitle: true, //设置标题是否局中
-        ),
         body: new ListView(
           children: <Widget>[
+            new AppBar(
+              title: new Text("操场"),
+              backgroundColor: Color.fromARGB(255, 119, 136, 213), //设置appbar背景颜色
+              centerTitle: true, //设置标题是否局中
+            ),
             new BannerHeader(),
             new Cards(),
           ],
@@ -33,102 +33,128 @@ class PlaygroundState extends State<Playground> {
 }
 
 class Cards extends StatelessWidget {
+  void navigateTo(BuildContext context, String url,String title) {
+    Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+      return new Browser(url: url,title: title,);
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Column(
       children: <Widget>[
-        new Card(
-          elevation: 10.0,
-          margin: new EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
-          color: Color.fromARGB(0, 255, 255, 255),
-          child: new Container(
-            width: 400.0,
-            height: 200.0,
-            decoration: new BoxDecoration(
-              color: Colors.white,
-              image: new DecorationImage(
-                  image: new AssetImage("assets/imgs/cards/card1.webp"),
-                  fit: BoxFit.cover),
-              shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
-              borderRadius: new BorderRadius.all(
-                const Radius.circular(15.0), // <-- rectangle 时，BorderRadius 才有效
+        new GestureDetector(
+          onTap: () => navigateTo(context, 'https://www.baidu.com',"抽奖"),
+          child: new Card(
+            elevation: 10.0,
+            margin: new EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+            color: Color.fromARGB(0, 255, 255, 255),
+            child: new Container(
+              width: 400.0,
+              height: 200.0,
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                image: new DecorationImage(
+                    image: new AssetImage("assets/imgs/cards/card1.webp"),
+                    fit: BoxFit.cover),
+                shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
+                borderRadius: new BorderRadius.all(
+                  const Radius.circular(
+                      15.0), // <-- rectangle 时，BorderRadius 才有效
+                ),
               ),
             ),
           ),
         ),
-        new Card(
-          margin: new EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
-          elevation: 10.0,
-          color: Color.fromARGB(0, 255, 255, 255),
-          child: new Container(
-            width: 400.0,
-            height: 200.0,
-            decoration: new BoxDecoration(
-              color: Colors.white,
-              image: new DecorationImage(
-                  image: new AssetImage("assets/imgs/cards/card2.webp"),
-                  fit: BoxFit.cover),
-              shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
-              borderRadius: new BorderRadius.all(
-                const Radius.circular(15.0), // <-- rectangle 时，BorderRadius 才有效
+        new GestureDetector(
+          onTap: () => navigateTo(context, Constant.BIAO_BAI,"表白墙"),
+          child: new Card(
+            margin: new EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+            elevation: 10.0,
+            color: Color.fromARGB(0, 255, 255, 255),
+            child: new Container(
+              width: 400.0,
+              height: 200.0,
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                image: new DecorationImage(
+                    image: new AssetImage("assets/imgs/cards/card2.webp"),
+                    fit: BoxFit.cover),
+                shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
+                borderRadius: new BorderRadius.all(
+                  const Radius.circular(
+                      15.0), // <-- rectangle 时，BorderRadius 才有效
+                ),
               ),
             ),
           ),
         ),
-        new Card(
-          margin: new EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
-          elevation: 10.0,
-          color: Color.fromARGB(0, 255, 255, 255),
-          child: new Container(
-            width: 400.0,
-            height: 200.0,
-            decoration: new BoxDecoration(
-              color: Colors.white,
-              image: new DecorationImage(
-                  image: new AssetImage("assets/imgs/cards/card3.webp"),
-                  fit: BoxFit.cover),
-              shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
-              borderRadius: new BorderRadius.all(
-                const Radius.circular(15.0), // <-- rectangle 时，BorderRadius 才有效
+        new GestureDetector(
+          onTap: () => navigateTo(context, Constant.ER_SHOU,"二手市场"),
+          child: new Card(
+            margin: new EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+            elevation: 10.0,
+            color: Color.fromARGB(0, 255, 255, 255),
+            child: new Container(
+              width: 400.0,
+              height: 200.0,
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                image: new DecorationImage(
+                    image: new AssetImage("assets/imgs/cards/card3.webp"),
+                    fit: BoxFit.cover),
+                shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
+                borderRadius: new BorderRadius.all(
+                  const Radius.circular(
+                      15.0), // <-- rectangle 时，BorderRadius 才有效
+                ),
               ),
             ),
           ),
         ),
-        new Card(
-          margin: new EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
-          elevation: 10.0,
-          color: Color.fromARGB(0, 255, 255, 255),
-          child: new Container(
-            width: 400.0,
-            height: 200.0,
-            decoration: new BoxDecoration(
-              color: Colors.white,
-              image: new DecorationImage(
-                  image: new AssetImage("assets/imgs/cards/card4.webp"),
-                  fit: BoxFit.cover),
-              shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
-              borderRadius: new BorderRadius.all(
-                const Radius.circular(15.0), // <-- rectangle 时，BorderRadius 才有效
+        new GestureDetector(
+          onTap: () => navigateTo(context, Constant.FIND_JOB,"兼职"),
+          child: new Card(
+            margin: new EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+            elevation: 10.0,
+            color: Color.fromARGB(0, 255, 255, 255),
+            child: new Container(
+              width: 400.0,
+              height: 200.0,
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                image: new DecorationImage(
+                    image: new AssetImage("assets/imgs/cards/card4.webp"),
+                    fit: BoxFit.cover),
+                shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
+                borderRadius: new BorderRadius.all(
+                  const Radius.circular(
+                      15.0), // <-- rectangle 时，BorderRadius 才有效
+                ),
               ),
             ),
           ),
         ),
-        new Card(
-          margin: new EdgeInsets.only(
-              left: 15.0, right: 15.0, top: 15.0, bottom: 15.0),
-          elevation: 10.0,
-          color: Color.fromARGB(0, 255, 255, 255),
-          child: new Container(
-            width: 400.0,
-            height: 200.0,
-            decoration: new BoxDecoration(
-              color: Colors.white,
-              image: new DecorationImage(
-                  image: new AssetImage("assets/imgs/cards/card5.webp"),
-                  fit: BoxFit.cover),
-              shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
-              borderRadius: new BorderRadius.all(
-                const Radius.circular(15.0), // <-- rectangle 时，BorderRadius 才有效
+        new GestureDetector(
+          onTap: () => navigateTo(context, Constant.FIND_LOST,"失物招领"),
+          child: new Card(
+            margin: new EdgeInsets.only(
+                left: 15.0, right: 15.0, top: 15.0, bottom: 15.0),
+            elevation: 10.0,
+            color: Color.fromARGB(0, 255, 255, 255),
+            child: new Container(
+              width: 400.0,
+              height: 200.0,
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                image: new DecorationImage(
+                    image: new AssetImage("assets/imgs/cards/card5.webp"),
+                    fit: BoxFit.cover),
+                shape: BoxShape.rectangle, // <-- 这里需要设置为 rectangle
+                borderRadius: new BorderRadius.all(
+                  const Radius.circular(
+                      15.0), // <-- rectangle 时，BorderRadius 才有效
+                ),
               ),
             ),
           ),
@@ -209,21 +235,6 @@ class BannerState extends State<BannerHeader> {
                             ),
                             flex: 1,
                           ),
-                          new Expanded(
-                            child: new Align(
-                              alignment: Alignment.centerRight,
-                              child: new Text(
-                                (index + 1).toString() +
-                                    "/" +
-                                    adList.length.toString(),
-                                style: new TextStyle(
-                                    fontSize: 14.0,
-                                    fontFamily: 'serif',
-                                    color: Color.fromARGB(255, 248, 248, 255)),
-                              ),
-                            ),
-                            flex: 1,
-                          )
                         ],
                       ),
                     ))),

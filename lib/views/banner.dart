@@ -101,7 +101,7 @@ class BannerViewState extends State<BannerView> {
                 parent: const ClampingScrollPhysics()),
             itemBuilder: (BuildContext context, int index) {
               return widget.buildShowView(
-                  pageController.page.round() % widget.data.length, widget.data[index % widget.data.length]);
+                  index, widget.data[index % widget.data.length]);
             },
             itemCount: IntegerMax,
           ),
