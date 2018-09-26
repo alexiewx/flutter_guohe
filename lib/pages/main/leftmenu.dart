@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_guohe/pages/login.dart';
 
 //左侧菜单栏
 class LeftMenu extends Drawer {
@@ -65,9 +66,10 @@ class LeftMenu extends Drawer {
               leading: new Icon(Icons.accessibility),
               onTap: () {
                 Navigator.of(context).pop();
-                Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text("关于我们"),
-                    ));
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => new LoginPage()),
+                );
               }),
           new ListTile(
               //退出按钮
@@ -76,8 +78,8 @@ class LeftMenu extends Drawer {
               onTap: () {
                 Navigator.of(context).pop();
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text("分享此应用"),
-                    ));
+                  content: new Text("分享此应用"),
+                ));
               } //点击后收起侧边栏
               ),
           new ListTile(
@@ -87,8 +89,8 @@ class LeftMenu extends Drawer {
               onTap: () {
                 Navigator.of(context).pop();
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text("给我们反馈"),
-                    ));
+                  content: new Text("给我们反馈"),
+                ));
               } //点击后收起侧边栏
               ),
           new ListTile(
@@ -98,8 +100,8 @@ class LeftMenu extends Drawer {
               onTap: () {
                 Navigator.of(context).pop();
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text("联系开发者"),
-                    ));
+                  content: new Text("联系开发者"),
+                ));
               } //点击后收起侧边栏
               ),
           new ListTile(
@@ -109,8 +111,8 @@ class LeftMenu extends Drawer {
               onTap: () {
                 Navigator.of(context).pop();
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text("加入交流群"),
-                    ));
+                  content: new Text("加入交流群"),
+                ));
               } //点击后收起侧边栏
               ),
           new ListTile(
@@ -120,8 +122,8 @@ class LeftMenu extends Drawer {
               onTap: () {
                 Navigator.of(context).pop();
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text("切换账号"),
-                    ));
+                  content: new Text("切换账号"),
+                ));
               } //点击后收起侧边栏
               ),
           new ListTile(
@@ -131,8 +133,8 @@ class LeftMenu extends Drawer {
               onTap: () {
                 Navigator.of(context).pop();
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text("检测升级"),
-                    ));
+                  content: new Text("检测升级"),
+                ));
               } //点击后收起侧边栏
               ),
           new ListTile(
@@ -142,8 +144,8 @@ class LeftMenu extends Drawer {
               onTap: () {
                 Navigator.of(context).pop();
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text("更新说明"),
-                    ));
+                  content: new Text("更新说明"),
+                ));
               } //点击后收起侧边栏
               ),
         ],

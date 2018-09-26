@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_guohe/views/banner.dart';
 import 'package:flutter_guohe/model/Ad.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_guohe/utils/constant.dart';
+import 'package:flutter_guohe/constant/UrlConstant.dart';
 import 'package:flutter_guohe/model/AdRes.dart';
 import 'package:flutter_guohe/views/browser.dart';
 
