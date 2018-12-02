@@ -1,20 +1,17 @@
-import 'dart:async';
-
 /**
  * APP的主入口文件
  */
 
 import 'package:flutter/material.dart';
-
-import 'package:flutter_guohe/pages/main/today.dart';
-import 'package:flutter_guohe/pages/main/playground.dart';
+import 'package:flutter_guohe/common/eventBus.dart';
 import 'package:flutter_guohe/pages/main/kb.dart';
 import 'package:flutter_guohe/pages/main/leftmenu.dart';
+import 'package:flutter_guohe/pages/main/playground.dart';
+import 'package:flutter_guohe/pages/main/today.dart';
+/**
+ * APP的主入口文件
+ */
 
-import 'package:flutter_guohe/common/eventBus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_guohe/constant/SpConstant.dart';
-import 'package:flutter_guohe/pages/login.dart';
 
 //果核的主界面
 class Guohe extends StatefulWidget {

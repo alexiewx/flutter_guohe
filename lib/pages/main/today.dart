@@ -1,12 +1,8 @@
-import 'dart:async';
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_guohe/common/eventBus.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter_guohe/views/customview.dart';
 import 'package:flutter_guohe/constant/UrlConstant.dart';
-import 'package:flutter_guohe/constant/SpConstant.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_guohe/views/customview.dart';
 
 class Today extends StatefulWidget {
   @override
@@ -358,7 +354,6 @@ class OneState extends State<One> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     getOneContent();
